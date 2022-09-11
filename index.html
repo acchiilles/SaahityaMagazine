@@ -1,0 +1,159 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Saahitya Magazine</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <style type="text/css">
+       body {
+        background-color: #333;
+        margin: 0 !important;
+        padding: 0;
+        height: 100vh;
+        overflow-y: hidden;
+      }
+      .container {
+        height: 100vh;
+        width: 100%;
+        margin: 0;
+        /* margin: 20px auto;
+        border: 2px solid red;
+        box-shadow: 0 0 5px red; */
+      }
+      .fullscreen {
+        background-color: #333;
+      }
+      .examples {
+        position: relative;
+      }
+      .examples div {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        padding-top: 10px;
+        font-size: 20px;
+      }
+      .examples a {
+        color: #ccc;
+        text-decoration: none;
+        padding: 0 10px;
+      }
+      .examples a:hover {
+        color: #fff;
+      }
+    </style>
+    <div class="flip-book-container solid-container container" src="src/magazine.pdf">
+
+    </div>
+  
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/pdf.min.js"></script>
+    <script src="js/3dflipbook.min.js"></script>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Saahitya Magazine</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <style type="text/css">
+      body {
+        background-color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+      }
+      .stretch{
+        margin: 0px;
+        overflow-y: hidden;
+        padding: 0px;
+        height: 100vh;
+        width: 100vw;
+      }
+      .fullscreen {
+        background-color: #333;
+      }
+    </style>
+    <div class = "stretch">
+      <div class="container fullscreen" id="container1">
+
+      </div>
+    </div>
+    
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/pdf.min.js"></script>
+    <script src="js/3dflipbook.min.js"></script>
+
+    <script type="text/javascript">
+
+var options = {
+  
+    pageCallback: function(n) { // this function has to return source description for FlipBook page
+      // for image sources
+      var imageDescription = {
+        type: 'image',
+        src: 'src/magazine/' + (n+1) + '.png',
+        interactive: false
+      };
+      return imageDescription; // or imageDescription or blankDescription
+    },
+    pages: 53, // amount of pages
+  
+    template: { // by means this property you can choose appropriate skin
+      html: 'templates/default-book-view.html',
+      styles: [
+        'css/black-book-view.css'// or one of white-book-view.css, short-white-book-view.css, shart-black-book-view.css
+      ],
+      links: [{
+        rel: 'stylesheet',
+        href: 'css/font-awesome.min.css'
+      }],
+      script: 'js/default-book-view.js',
+      printStyle: undefined, // or you can set your stylesheet for printing ('print-style.css')
+      sounds: {
+        startFlip: 'sounds/start-flip.mp3',
+        endFlip: 'sounds/end-flip.mp3'
+      }
+    },
+    pdfLinks: {
+      handler: function(type, destination) { // type: 'internal' (destination - page number), 'external' (destination - url)
+        return true; // true - prevent default handler, false - call default handler
+      }
+    },
+    autoNavigation: {
+      urlParam: 'fb3d-page', // url query param name for deep linking: http://example.com?fb3d-page=10
+      navigates: 1, // number of instances that will be navigated automatically,
+      pageN: undefined // auto open page pageN
+    },
+    bookStyle: 'volume-paddings', // volume, flat or volume-paddings
+    activateFullScreen: false, // activate fullscreen if it is possible (API can only be initiated by a user gesture)
+    ready: function(scene) { // optional function - this function executes when loading is complete
+
+    },
+    error: function(e) { 
+      console.log(e);
+    }
+
+  };
+  var book = $('#container1').FlipBook(options);
+  </script>
+
+  </body>
+</html>
